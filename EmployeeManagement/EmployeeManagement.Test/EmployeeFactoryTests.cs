@@ -42,5 +42,14 @@ namespace EmployeeManagement.Test
             var employee = (InternalEmployee)employeeFactory.CreateEmployee("Kevin", "Dockx");
             Assert.InRange(employee.Salary, 2500, 3500);
         }
+
+        [Fact]
+        public void CreateEmployee_ConstructInternalEmployee_PrecisionExample()
+        {
+            var employeeFactory = new EmployeeFactory();
+            var employee = (InternalEmployee)employeeFactory.CreateEmployee("Kevin", "Dockx");
+            employee.Salary = 2500.123m;
+            Assert.Equal(2500, employee.Salary, 0);
+        }
     }
 }
