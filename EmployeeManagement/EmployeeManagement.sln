@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLevelManagement", "TopLevelManagement\TopLevelManagement.csproj", "{6807FF4E-072D-4AE3-81BC-67D75FE791DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement", "EmployeeManagement\EmployeeManagement.csproj", "{770530BB-1B03-4C7E-9F75-98BC89E2CC78}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6807FF4E-072D-4AE3-81BC-67D75FE791DC} = {6807FF4E-072D-4AE3-81BC-67D75FE791DC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
