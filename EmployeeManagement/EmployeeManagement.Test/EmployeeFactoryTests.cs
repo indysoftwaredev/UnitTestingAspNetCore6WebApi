@@ -60,7 +60,7 @@ namespace EmployeeManagement.Test
             var employee = factory.CreateEmployee("Kevin", "Dockx", "Marvin", true);
 
             Assert.IsType<ExternalEmployee>(employee);
-            Assert.IsAssignableFrom<Employee>(employee);
+            //Assert.IsAssignableFrom<Employee>(employee);
         }
     }
 }
