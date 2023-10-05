@@ -161,7 +161,6 @@ namespace EmployeeManagement.Test
                 handler => employeeService.EmployeeIsAbsent += handler,
                 handler => employeeService.EmployeeIsAbsent -= handler,
                 () => employeeService.NotifyOfAbsence(internalEmployee));
-
         }
     }
 }
