@@ -13,7 +13,7 @@ namespace EmployeeManagement.Services.Test
         public EmployeeManagementTestDataRepository()
         {
             // mimic expensive creation process
-            //Thread.Sleep(3000);
+            Thread.Sleep(3000);
 
             // initialize with dummy data 
             var obligatoryCourse1 = new Course("Company Introduction")
