@@ -159,5 +159,20 @@ namespace EmployeeManagement.Test
 
             Assert.Equal(expectedValueForMinimumRaisegiven, internalEmployee.MinimumRaiseGiven);
         }
+
+        [Theory]
+        [ClassData(typeof(StronglyTypedEmployeeTestDataFromFile))]
+        public async Task GiveRaise_RaiseGiven_EmployeeMinimumRaiseGivenMatchesValue_TheoryDataFromFile(
+            int raiseGiven, bool expectedValueForMinimumRaisegiven)
+        {
+            // Arrange  
+            var internalEmployee = new InternalEmployee(
+                "Brooklyn", "Cannon", 5, 3000, false, 1);
+
+            await _employeeServiceFixture.EmployeeService
+                .GiveRaiseAsync(internalEmployee, raiseGiven);
+
+            Assert.Equal(expectedValueForMinimumRaisegiven, internalEmployee.MinimumRaiseGiven);
+        }
     }
 }
