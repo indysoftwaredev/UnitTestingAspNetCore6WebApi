@@ -117,5 +117,47 @@ namespace EmployeeManagement.Test
             Assert.Equal(expectedValueForMinimumRaisegiven, internalEmployee.MinimumRaiseGiven);
 
         }
+
+        [Theory]
+        [ClassData(typeof(StronglyTypedEmployeeServiceTestData))]
+        public async Task GiveRaise_RaiseGiven_EmployeeMinimumRaiseGivenMatchesValue_TheoryDataClass(
+            int raiseGiven, bool expectedValueForMinimumRaisegiven)
+        {
+            // Arrange  
+            var internalEmployee = new InternalEmployee(
+                "Brooklyn", "Cannon", 5, 3000, false, 1);
+
+            await _employeeServiceFixture.EmployeeService
+                .GiveRaiseAsync(internalEmployee, raiseGiven);
+
+            Assert.Equal(expectedValueForMinimumRaisegiven, internalEmployee.MinimumRaiseGiven);
+        }
+
+        public static TheoryData<int, bool> StronglyTypedExampleTestDataForGiveRaise_TheoryDataProperty
+        {
+            get
+            {
+                return new TheoryData<int, bool>
+                {
+                    {100, true},
+                    {200, false},
+                };
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(StronglyTypedExampleTestDataForGiveRaise_TheoryDataProperty))]
+        public async Task GiveRaise_RaiseGiven_EmployeeMinimumRaiseGivenMatchesValue_TheoryDataProperty(
+            int raiseGiven, bool expectedValueForMinimumRaisegiven)
+        {
+            // Arrange  
+            var internalEmployee = new InternalEmployee(
+                "Brooklyn", "Cannon", 5, 3000, false, 1);
+
+            await _employeeServiceFixture.EmployeeService
+                .GiveRaiseAsync(internalEmployee, raiseGiven);
+
+            Assert.Equal(expectedValueForMinimumRaisegiven, internalEmployee.MinimumRaiseGiven);
+        }
     }
 }
