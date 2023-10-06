@@ -22,7 +22,7 @@ namespace EmployeeManagement.Test
             //clean up setup code, if required
         }
 
-        [Fact]
+        [Fact(Skip ="Skipping this test for demo purposes.")]
         [Trait("Category", "EmployeeFactory_CreateEmployee_ReturnType")]
         public void CreateEmployee_ConstructInternalEmployee_SalaryMustBe2500()
         {
