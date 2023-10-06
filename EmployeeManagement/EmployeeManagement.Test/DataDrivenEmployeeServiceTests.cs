@@ -15,6 +15,21 @@ namespace EmployeeManagement.Test
             _employeeServiceFixture = employeeServiceFixture;
         }
 
+        [Theory]
+        [InlineData("37e03ca7-c730-4351-834c-b66f280cdb01")]
+        [InlineData("1fd115cf-f44c-4982-86bc-a8fe2e4ff83e")]
+        public void CreateInternalEmployee_InternalEmployeeCreated_MustHaveAttendedObligatoryCourses(
+            Guid courseId)
+        {
+            //Act
+            var internalEmployee = 
+                _employeeServiceFixture.EmployeeService.CreateInternalEmployee("Brooklyn", "Cannon");
+
+            //Assert
+            Assert.Contains(internalEmployee.AttendedCourses,
+               c => c.Id == courseId);
+        }
+
         [Fact]
         public async Task GiveRaise_MinimumRaiseGiven_EmployeeMinimumRaiseGivenMustBeTrue()
         {
