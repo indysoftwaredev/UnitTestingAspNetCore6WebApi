@@ -23,6 +23,7 @@ namespace EmployeeManagement.Test
         }
 
         [Fact]
+        [Trait("Category", "EmployeeFactory_CreateEmployee_ReturnType")]
         public void CreateEmployee_ConstructInternalEmployee_SalaryMustBe2500()
         {
             var employee = (InternalEmployee)_employeeFactory.CreateEmployee("Kevin", "Dockx");
@@ -30,6 +31,7 @@ namespace EmployeeManagement.Test
         }
 
         [Fact]
+        [Trait("Category", "EmployeeFactory_CreateEmployee_ReturnType")]
         public void CreateEmployee_ConstructInternalEmployee_SalaryMustBeBetween2500And3500()
         {
             var employee = (InternalEmployee)_employeeFactory.CreateEmployee("Kevin", "Dockx");
@@ -37,6 +39,7 @@ namespace EmployeeManagement.Test
         }
 
         [Fact]
+        [Trait("Category", "EmployeeFactory_CreateEmployee_ReturnType")]
         public void CreateEmployee_ConstructInternalEmployee_SalaryMustBeBetween2500And3500_Alternative()
         {
             var employee = (InternalEmployee)_employeeFactory.CreateEmployee("Kevin", "Dockx");
@@ -45,6 +48,7 @@ namespace EmployeeManagement.Test
         }
 
         [Fact]
+        [Trait("Category", "EmployeeFactory_CreateEmployee_ReturnType")]
         public void CreateEmployee_ConstructInternalEmployee_SalaryMustBeBetween2500And3500_AlternativeWithinRange()
         {
             var employee = (InternalEmployee)_employeeFactory.CreateEmployee("Kevin", "Dockx");
@@ -52,6 +56,7 @@ namespace EmployeeManagement.Test
         }
 
         [Fact]
+        [Trait("Category", "EmployeeFactory_CreateEmployee_Salary")]
         public void CreateEmployee_ConstructInternalEmployee_PrecisionExample()
         {
             var employee = (InternalEmployee)_employeeFactory.CreateEmployee("Kevin", "Dockx");
@@ -60,6 +65,7 @@ namespace EmployeeManagement.Test
         }
 
         [Fact]
+        [Trait("Category", "EmployeeFactory_CreateEmployee_ReturnType")]
         public void CreateEmployee_IsExternalIsTrue_ReturnTypeMustBeExternalEmployee()
         {
 
