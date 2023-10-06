@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit.Abstractions;
 
 namespace EmployeeManagement.Test
 {
@@ -16,10 +17,12 @@ namespace EmployeeManagement.Test
     public class EmployeeServiceTests //: IClassFixture<EmployeeServiceFixture>
     {
         private readonly EmployeeServiceFixture _employeeServiceFixture;
+        private readonly ITestOutputHelper _testOutputHelper;
 
-        public EmployeeServiceTests(EmployeeServiceFixture employeeServiceFixture)
+        public EmployeeServiceTests(EmployeeServiceFixture employeeServiceFixture, ITestOutputHelper testOutputHelper)
         {
             _employeeServiceFixture = employeeServiceFixture;
+            _testOutputHelper = testOutputHelper;
         }
 
         [Fact]
@@ -31,6 +34,13 @@ namespace EmployeeManagement.Test
 
             //Act
             var internalEmployee = _employeeServiceFixture.EmployeeService.CreateInternalEmployee("Brooklyn", "Cannon");
+
+            _testOutputHelper.WriteLine($"Employee after Act: " +
+                $"{internalEmployee.FirstName} {internalEmployee.LastName}");
+
+            internalEmployee
+                .AttendedCourses
+                .ForEach(c => _testOutputHelper.WriteLine($"Attended course: {c.Id} {c.Title}"));
 
             //Assert
             Assert.Contains(obligatoryCourse, internalEmployee.AttendedCourses);
