@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.Business;
 using EmployeeManagement.DataAccess.Entities;
+using EmployeeManagement.DataAccess.Services;
 using EmployeeManagement.Services.Test;
 using Moq;
 using System;
@@ -79,6 +80,41 @@ namespace EmployeeManagement.Test
             //Assert
             Assert.Equal(suggestedBonus, employee.SuggestedBonus);
 
+        }
+        [Fact]
+        public void FetchInternalEmployee_EmployeeFetched_SuggestedBonusMustBeCalculated_ViaInterface()
+        {
+            //Arrange
+            //var employeeManagementTestDataRepository =
+            //    new EmployeeManagementTestDataRepository();
+            //var employeeFactory = new EmployeeFactory();
+            var employeeManagementTestDataRepositoryMock =
+                new Mock<IEmployeeManagementRepository>();
+
+            employeeManagementTestDataRepositoryMock
+                .Setup(m => m.GetInternalEmployee(It.IsAny<Guid>()))
+                .Returns(new InternalEmployee("Tony", "Hall", 2, 2500, false, 2)
+                {
+                    AttendedCourses = new List<Course>()
+                    {
+                        new Course("A course"),
+                        new Course("Another course")
+                    }
+                });
+
+            var employeeFactoryMock = new Mock<EmployeeFactory>();
+            var employeeService = new EmployeeService(
+                employeeManagementTestDataRepositoryMock.Object, 
+                employeeFactoryMock.Object);
+
+            //Act
+            var employee = employeeService.FetchInternalEmployee(Guid.Empty);
+
+            //Assert
+            Assert.Equal(400, employee.SuggestedBonus);
+
+            //FetchInternalEmployee does not use the mock object.  It is used in the constructor
+            //as a dummy object.
         }
     }
 }
